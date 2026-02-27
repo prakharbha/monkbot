@@ -13,7 +13,9 @@ export async function POST(req: Request) {
             );
         }
 
-        const resetLink = `http://localhost:3000/reset-password?token=mock-token-${Date.now()}`;
+        const host = req.headers.get('host') || 'localhost:3000';
+        const protocol = host.includes('localhost') ? 'http' : 'https';
+        const resetLink = `${protocol}://${host}/reset-password?token=mock-token-${Date.now()}`;
 
         const htmlContent = `
       <h2>Password Reset Request</h2>
