@@ -1,16 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 
 interface PluginDownloadCardProps {
     isAuthed: boolean;
-    showAuthToggle?: boolean;
 }
 
-export default function PluginDownloadCard({ isAuthed: initialAuth, showAuthToggle = false }: PluginDownloadCardProps) {
-    const [isAuthed, setIsAuthed] = useState(initialAuth);
-
+export default function PluginDownloadCard({ isAuthed }: PluginDownloadCardProps) {
     return (
         <div className="w-full bg-[#f8fbff] border border-blue-100 rounded-2xl p-6 lg:p-8 flex flex-col relative overflow-hidden transition-all duration-300">
             {/* Background decorative Elements */}
@@ -22,14 +16,6 @@ export default function PluginDownloadCard({ isAuthed: initialAuth, showAuthTogg
                     WordPress<br />
                     Plugin
                 </h3>
-                {showAuthToggle && (
-                    <button
-                        onClick={() => setIsAuthed(!isAuthed)}
-                        className="text-xs font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-700 underline underline-offset-4 decoration-blue-200 transition-colors"
-                    >
-                        Toggle {isAuthed ? "Auth" : "Lock"}<br />(Mock)
-                    </button>
-                )}
             </div>
 
             <p className="text-[#4b5563] text-sm lg:text-lg mb-8 relative z-10 leading-relaxed max-w-sm">

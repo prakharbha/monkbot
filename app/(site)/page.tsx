@@ -2,7 +2,6 @@ import Link from "next/link";
 import BackgroundGlow from "../components/BackgroundGlow";
 import ChatSlider from "../components/ChatSlider";
 import WordRotator from "../components/WordRotator";
-import PluginDownloadCard from "../components/PluginDownloadCard";
 
 export default function HomePage() {
   return (
@@ -143,9 +142,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="col-span-1 md:col-span-3 w-full">
-              <PluginDownloadCard isAuthed={false} showAuthToggle={true} />
-            </div>
           </div>
         </div>
       </section>
