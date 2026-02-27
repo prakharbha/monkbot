@@ -116,12 +116,12 @@ export default function ResourcesPage() {
                             ))}
                         </div>
 
-                        {/* Dev Portal CTA */}
+                        {/* Enterprise Sales CTA */}
                         <div className="mt-16 bg-gray-900 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 blur-3xl rounded-full"></div>
-                            <h2 className="text-3xl font-semibold mb-4 relative z-10">Looking to build native MCP clients?</h2>
-                            <p className="text-gray-300 font-light mb-8 max-w-lg mx-auto relative z-10">Access our comprehensive API documentation and SDKs to integrate MonkBot's Model Context Protocol into your own applications.</p>
-                            <button className="bg-white text-gray-900 font-medium px-6 py-3 rounded-lg relative z-10 hover:bg-gray-100 transition-colors shadow-lg">Go to Developer Portal</button>
+                            <h2 className="text-3xl font-semibold mb-4 relative z-10">Looking for custom enterprise deployments?</h2>
+                            <p className="text-gray-300 font-light mb-8 max-w-lg mx-auto relative z-10">We offer custom integration support, private cloud deployments, and dedicated account management for large volume agencies.</p>
+                            <Link href="/contact" className="inline-block bg-white text-gray-900 font-medium px-6 py-3 rounded-lg relative z-10 hover:bg-gray-100 transition-colors shadow-lg">Talk to Sales</Link>
                         </div>
                     </div>
 
