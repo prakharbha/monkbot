@@ -6,6 +6,7 @@ import { generateApiKey } from "@/lib/auth";
 export const runtime = "nodejs";
 
 const BodySchema = z.object({
+  userId: z.string(),
   label: z.string().min(1).max(100).optional(),
   plan: z.enum(["FREE", "PRO_MANUAL"]).default("FREE"),
   monthlyCreditCap: z.number().int().positive().optional(),
@@ -38,7 +39,8 @@ export async function POST(req: NextRequest) {
       label: parsed.data.label,
       plan: parsed.data.plan,
       monthlyCreditCap: parsed.data.monthlyCreditCap,
-      creditsRemaining: parsed.data.creditsRemaining ?? defaultCredits
+      creditsRemaining: parsed.data.creditsRemaining ?? defaultCredits,
+      userId: parsed.data.userId
     }
   });
 
