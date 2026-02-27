@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+html,
+body {
+  background: #ffffff;
+  color: #111827;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Base Light Theme Animations */
+@keyframes monk-gradient-shift {
+  0% {
+    transform: scale(1) translate(0px, 0px);
+    opacity: 0.6;
+  }
+
+  33% {
+    transform: scale(1.1) translate(30px, -50px);
+    opacity: 0.8;
+  }
+
+  66% {
+    transform: scale(0.9) translate(-20px, 20px);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1) translate(0px, 0px);
+    opacity: 0.6;
+  }
+}
+
+/* Light Theme Utilities */
+.agent-bg-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(247, 247, 59, 0.15) 0%, rgba(145, 221, 255, 0.1) 40%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+  animation: monk-gradient-shift 15s ease-in-out infinite;
+}
+
+/* Glassmorphism & Liquid Nav */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.liquid-glass-nav {
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.65) 100%);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.agent-input-glow:focus-within {
+  box-shadow: 0 0 0 2px rgba(247, 247, 59, 0.5), 0 8px 24px rgba(247, 247, 59, 0.15);
+  border-color: rgba(247, 247, 59, 0.8);
+}
+
+/* Chat Showcase Styles */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 1rem 1.25rem;
+  border-radius: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.chat-bubble-user {
+  align-self: flex-end;
+  background: #111827;
+  color: #ffffff;
+  border-bottom-right-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(17, 24, 39, 0.1);
+}
+
+.chat-bubble-agent {
+  align-self: flex-start;
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom-left-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Base tailwind keyframes */
+.monk-logo-track {
+  width: max-content;
+  display: flex;
+}
+
+.monk-logo-image {
+  height: 20px !important;
+  max-height: 20px !important;
+  width: auto !important;
+  filter: grayscale(100%) opacity(0.6);
+  transition: filter 0.3s ease;
+}
+
+.monk-logo-image:hover {
+  filter: grayscale(0%) opacity(1);
+}
+
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up-delayed {
+  opacity: 0;
+  animation: slideUpFadeIn 0.5s ease-out 0.15s forwards;
+}
+
+@media (min-width: 1024px) {
+  .lg\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
+  .lg\:col-span-8 {
+    grid-column: span 8 / span 8;
+  }
+}

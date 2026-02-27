@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Plan {
+  FREE
+  PRO_MANUAL
+}
+
+enum ApiKeyStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum DomainStatus {
+  ACTIVE
+  DISABLED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  role          Role      @default(USER)
+  keys          ApiKey[]
+  subscriptions Subscription[]
+  invoices      Invoice[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ApiKey {
+  id                String        @id @default(cuid())
+  userId            String
+  keyPrefix         String
+  keyHash           String        @unique
+  keyToken          String?       @unique
+  label             String?
+  plan              Plan          @default(FREE)
+  status            ApiKeyStatus  @default(ACTIVE)
+  monthlyCreditCap  Int?
+  creditsRemaining  Int           @default(50)
+  lastUsedAt        DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  domains           AllowedDomain[]
+  creditLedger      CreditLedger[]
+
+  @@index([userId])
+  @@index([keyPrefix])
+  @@index([status])
+}
+
+model AllowedDomain {
+  id         String       @id @default(cuid())
+  apiKeyId   String
+  domain     String
+  status     DomainStatus @default(ACTIVE)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  apiKey     ApiKey       @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+
+  @@unique([apiKeyId, domain])
+  @@index([domain])
+}
+
+model CreditLedger {
+  id         String   @id @default(cuid())
+  apiKeyId   String
+  delta      Int
+  reason     String
+  meta       Json?
+  createdAt  DateTime @default(now())
+  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+
+  @@index([apiKeyId, createdAt])
+}
+
+model Subscription {
+  id               String   @id @default(cuid())
+  userId           String
+  plan             Plan     @default(FREE)
+  status           String   @default("ACTIVE") // e.g. ACTIVE, PAST_DUE, CANCELED
+  currentPeriodEnd DateTime
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Invoice {
+  id            String   @id @default(cuid())
+  userId        String
+  amount        Int      // In cents (e.g. 5000 = $50.00)
+  status        String   @default("PAID") // e.g. DRAFT, OPEN, PAID, UNCOLLECTIBLE
+  invoiceDate   DateTime @default(now())
+  paymentDate   DateTime?
+  hostedUrl     String?  // PDF or Stripe URL
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
