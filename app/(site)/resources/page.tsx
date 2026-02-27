@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import PluginDownloadCard from "../../components/PluginDownloadCard";
 
 export default function ResourcesPage() {
-    // Mock authentication state for demonstration
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const articles = [
         { tag: "Guide", title: "Migrating from traditional CMS management to Agentic control", time: "5 min read", date: "Oct 24, 2026", featured: true },
         { tag: "Technical", title: "Extending MonkBot with Custom PHP Hooks", time: "8 min read", date: "Oct 18, 2026" },
@@ -63,33 +61,7 @@ export default function ResourcesPage() {
                         </div>
 
                         {/* Download Plugin Snippet */}
-                        <div className="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
-                            <h3 className="font-semibold text-gray-900 mb-2.5 text-sm flex items-center justify-between">
-                                Monkbot WordPress Plugin
-                                {/* Toggle for testing purposes */}
-                                <button onClick={() => setIsLoggedIn(!isLoggedIn)} className="text-[10px] text-gray-400 hover:text-gray-600 underline">
-                                    Toggle Auth (Mock)
-                                </button>
-                            </h3>
-                            <p className="text-xs text-gray-600 mb-4 leading-relaxed">Download the latest version of the Monkbot WordPress integration plugin. Version 1.2.4.</p>
-
-                            {isLoggedIn ? (
-                                <button className="w-full bg-blue-600 text-white text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-sm">
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                                    Download Now
-                                </button>
-                            ) : (
-                                <div className="space-y-3">
-                                    <button disabled className="w-full bg-gray-200 text-gray-500 text-sm font-medium px-4 py-2.5 rounded-lg flex items-center justify-center gap-2 cursor-not-allowed">
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                                        Authentication Required
-                                    </button>
-                                    <p className="text-[11px] text-center text-gray-500">
-                                        <Link href="/sign-in" className="text-blue-600 hover:underline">Log in</Link> to download the plugin.
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+                        <PluginDownloadCard isAuthed={false} />
 
                         <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
                             <h3 className="font-semibold text-gray-900 mb-2.5 text-sm">Need help?</h3>
@@ -114,8 +86,8 @@ export default function ResourcesPage() {
                                         <div>
                                             <div className="flex items-center justify-between mb-4">
                                                 <span className={`inline-block px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold rounded ${article.tag === 'News' ? 'bg-purple-100 text-purple-700' :
-                                                        article.tag === 'Guide' ? 'bg-green-100 text-green-700' :
-                                                            'bg-gray-100 text-gray-600'
+                                                    article.tag === 'Guide' ? 'bg-green-100 text-green-700' :
+                                                        'bg-gray-100 text-gray-600'
                                                     }`}>
                                                     {article.tag}
                                                 </span>

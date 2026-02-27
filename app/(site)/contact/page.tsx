@@ -12,11 +12,31 @@ export default function ContactPage() {
   const [selectedDemoTime, setSelectedDemoTime] = useState('');
   const [localTimezone, setLocalTimezone] = useState('');
 
+  // Dynamic dates
+  const [dates, setDates] = useState({ day1: 'Tomorrow', day2: 'Day After' });
+
   useEffect(() => {
     try {
       const parts = Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).formatToParts(new Date());
       const tz = parts.find(p => p.type === 'timeZoneName')?.value;
       if (tz) setLocalTimezone(`${tz} Timezone`);
+
+      // Calculate next two days
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      const nextDay = new Date(today);
+      nextDay.setDate(nextDay.getDate() + 2);
+
+      const options: Intl.DateTimeFormatOptions = { weekday: 'long' };
+
+      // If today is Thursday, day2 is Saturday. Let's just give exact names.
+      setDates({
+        day1: 'Tomorrow',
+        day2: nextDay.toLocaleDateString('en-US', options)
+      });
+
     } catch (e) {
       // Fallback silently
     }
@@ -135,16 +155,16 @@ export default function ContactPage() {
               <form onSubmit={handleDemoSubmit} className="space-y-6">
                 <div>
                   <h3 className="font-medium text-gray-900 mb-3 text-sm flex justify-between items-center">
-                    <span>Tomorrow</span>
+                    <span>{dates.day1}</span>
                     {localTimezone && <span className="text-xs text-gray-500 font-normal animate-fade-in">{localTimezone}</span>}
                   </h3>
                   <div className="grid grid-cols-4 gap-3">
                     {["10:00 AM", "11:30 AM", "1:00 PM", "3:30 PM"].map((time, i) => (
                       <button
                         type="button"
-                        key={`tomorrow-${i}`}
-                        onClick={() => setSelectedDemoTime(`Tomorrow, ${time}`)}
-                        className={`py-2 px-1 text-sm border rounded-lg transition-colors font-medium text-center ${selectedDemoTime === `Tomorrow, ${time}` ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200 text-gray-700 hover:border-gray-900 hover:bg-gray-50'}`}
+                        key={`day1-${i}`}
+                        onClick={() => setSelectedDemoTime(`${dates.day1}, ${time}`)}
+                        className={`py-2 px-1 text-sm border rounded-lg transition-colors font-medium text-center ${selectedDemoTime === `${dates.day1}, ${time}` ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200 text-gray-700 hover:border-gray-900 hover:bg-gray-50'}`}
                       >
                         {time}
                       </button>
@@ -153,14 +173,14 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-3 text-sm">Friday</h3>
+                  <h3 className="font-medium text-gray-900 mb-3 text-sm">{dates.day2}</h3>
                   <div className="grid grid-cols-4 gap-3">
                     {["9:00 AM", "11:00 AM", "2:00 PM", "4:30 PM"].map((time, i) => (
                       <button
                         type="button"
-                        key={`friday-${i}`}
-                        onClick={() => setSelectedDemoTime(`Friday, ${time}`)}
-                        className={`py-2 px-1 text-sm border rounded-lg transition-colors font-medium text-center ${selectedDemoTime === `Friday, ${time}` ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200 text-gray-700 hover:border-gray-900 hover:bg-gray-50'}`}
+                        key={`day2-${i}`}
+                        onClick={() => setSelectedDemoTime(`${dates.day2}, ${time}`)}
+                        className={`py-2 px-1 text-sm border rounded-lg transition-colors font-medium text-center ${selectedDemoTime === `${dates.day2}, ${time}` ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-200 text-gray-700 hover:border-gray-900 hover:bg-gray-50'}`}
                       >
                         {time}
                       </button>
