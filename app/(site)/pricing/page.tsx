@@ -37,7 +37,7 @@ export default function PricingPage() {
       {/* Background Light Glow Element */}
       <div className="agent-bg-glow"></div>
 
-      <section className="w-full relative z-10 min-h-[calc(100vh-80px)] xl:min-h-[800px] flex items-center justify-center py-12 md:py-24">
+      <section className="w-full relative z-10 min-h-[calc(100vh-80px)] xl:min-h-[800px] flex items-center justify-center py-12 md:py-24 overflow-x-hidden">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 w-full flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
           {/* Left Side: Copy */}
