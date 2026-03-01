@@ -17,7 +17,7 @@ export default function PluginDownloadCard({ isAuthed }: PluginDownloadCardProps
                     Plugin
                 </h3>
                 <p className="text-[#4b5563] text-sm lg:text-base leading-relaxed">
-                    Download the latest version of the Monkbot WordPress integration plugin. Version 1.2.4.
+                    Download the latest version of the Monkbot WordPress integration plugin. Version 1.3.0.
                 </p>
             </div>
 

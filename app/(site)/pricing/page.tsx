@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import WaitlistModal from "@/app/components/WaitlistModal";
 
 const pricingCards = [
   {
@@ -9,21 +13,25 @@ const pricingCards = [
     cta: "Start for free",
     href: "/get-started",
     features: ["50 credits", "1 Domain", "Standard Email Support"],
-    featured: true
+    featured: true,
+    isWaitlist: false,
   },
   {
     name: "Pro",
     price: "$19",
     suffix: "/month",
     note: "For agencies and power users scaling CMS operations.",
-    cta: "Coming Soon",
+    cta: "Join Waitlist",
     href: "#",
     features: ["500 credits", "Limit of 3 domains", "Different Workflow integrations", "Priority Support"],
-    featured: false
+    featured: false,
+    isWaitlist: true,
   }
 ];
 
 export default function PricingPage() {
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+
   return (
     <>
       {/* Background Light Glow Element */}
@@ -66,6 +74,11 @@ export default function PricingPage() {
 
                   <div className="flex items-center justify-between mt-2">
                     <p className="text-2xl font-semibold text-gray-900">{card.name}</p>
+                    {card.isWaitlist && (
+                      <span className="text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full">
+                        Coming Soon
+                      </span>
+                    )}
                   </div>
 
                   <div className="mt-4 flex items-baseline gap-1">
@@ -75,20 +88,29 @@ export default function PricingPage() {
 
                   <p className="mt-4 text-gray-600 min-h-[48px]">{card.note}</p>
 
-                  <Link
-                    href={card.href}
-                    className={`mt-8 flex items-center justify-center h-12 w-full rounded-xl text-base font-semibold transition-all ${card.featured
-                      ? "bg-gray-900 text-white hover:bg-gray-800 shadow-md hover:shadow-lg"
-                      : "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none"
-                      }`}
-                  >
-                    {card.cta}
-                  </Link>
+                  {card.isWaitlist ? (
+                    <button
+                      onClick={() => setWaitlistOpen(true)}
+                      className="mt-8 flex items-center justify-center gap-2 h-12 w-full rounded-xl text-base font-semibold transition-all bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg active:scale-[0.98]"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                      </svg>
+                      {card.cta}
+                    </button>
+                  ) : (
+                    <Link
+                      href={card.href}
+                      className="mt-8 flex items-center justify-center h-12 w-full rounded-xl text-base font-semibold transition-all bg-gray-900 text-white hover:bg-gray-800 shadow-md hover:shadow-lg"
+                    >
+                      {card.cta}
+                    </Link>
+                  )}
 
                   <div className="mt-8 border-t border-gray-100 pt-6 space-y-4 flex-1">
                     {card.features.map((f) => (
                       <div key={f} className="flex items-start gap-3">
-                        <svg className={`w-5 h-5 flex-shrink-0 mt-0.5 ${card.featured ? 'text-green-500' : 'text-gray-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className={`w-5 h-5 flex-shrink-0 mt-0.5 ${card.featured ? 'text-green-500' : 'text-blue-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                         <span className="text-gray-700 font-medium">{f}</span>
@@ -102,6 +124,9 @@ export default function PricingPage() {
 
         </div>
       </section>
+
+      {/* Waitlist Modal */}
+      <WaitlistModal isOpen={waitlistOpen} onClose={() => setWaitlistOpen(false)} />
     </>
   );
 }
