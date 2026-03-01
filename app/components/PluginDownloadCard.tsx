@@ -24,11 +24,8 @@ export default function PluginDownloadCard({ isAuthed }: PluginDownloadCardProps
             <div className="relative z-10 w-full md:w-auto flex-shrink-0">
                 {isAuthed ? (
                     <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            alert("Downloading monkbot-v1.2.4.zip...");
-                        }}
+                        href="/monkbot-plugin.zip"
+                        download="monkbot-plugin.zip"
                         className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2.5 px-5 rounded-lg flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg active:scale-[0.98] w-full md:w-auto"
                     >
                         <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
