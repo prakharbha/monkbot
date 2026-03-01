@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       where: { apiKeyId: key.id, status: "ACTIVE" }
     });
     const existing = await prisma.allowedDomain.findUnique({
-      where: { apiKeyId_domain: { apiKeyId: key.id, domain } }
+      where: { domain }
     });
 
     if (!existing && activeCount >= 1) {
@@ -46,8 +46,16 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  const existingGlobal = await prisma.allowedDomain.findUnique({
+    where: { domain }
+  });
+
+  if (existingGlobal && existingGlobal.apiKeyId !== key.id) {
+    return NextResponse.json({ message: "This domain is already registered to another API key." }, { status: 400 });
+  }
+
   const linked = await prisma.allowedDomain.upsert({
-    where: { apiKeyId_domain: { apiKeyId: key.id, domain } },
+    where: { domain },
     update: { status: "ACTIVE" },
     create: { apiKeyId: key.id, domain, status: "ACTIVE" }
   });
