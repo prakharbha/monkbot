@@ -15,12 +15,13 @@ export async function GET(req: Request) {
         });
 
         if (!existingToken) {
-            return NextResponse.json({ message: "Token does not exist!" }, { status: 400 });
+            // L1-R3: Same message for all token failures to prevent timing info leak
+            return NextResponse.json({ message: "Invalid or expired verification link." }, { status: 400 });
         }
 
         const hasExpired = new Date(existingToken.expiresAt) < new Date();
         if (hasExpired) {
-            return NextResponse.json({ message: "Token has expired!" }, { status: 400 });
+            return NextResponse.json({ message: "Invalid or expired verification link." }, { status: 400 });
         }
 
         const existingUser = await prisma.user.findUnique({
@@ -43,8 +44,9 @@ export async function GET(req: Request) {
             where: { id: existingToken.id },
         });
 
-        // Redirect to dashboard or success page
-        return NextResponse.redirect(new URL("/dashboard", req.url));
+        // H1-R3: Use NEXT_PUBLIC_APP_URL as the base, never req.url (prevents open redirect)
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://monkbot.app";
+        return NextResponse.redirect(new URL("/dashboard", appUrl));
     } catch (error) {
         console.error("Verification error:", error);
         return NextResponse.json({ message: "Internal server error" }, { status: 500 });

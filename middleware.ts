@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { verifySession } from "@/lib/session";
 
-// Routes that require authentication
-const protectedRoutes = ["/dashboard"];
+// Routes that require authentication (page routes + API route groups as defence-in-depth)
+const protectedRoutes = [
+    "/dashboard",
+    "/api/admin",  // M3-R3: Middleware-level fallback for all admin API routes
+    "/api/user",   // M3-R3: Middleware-level fallback for all user API routes
+];
 // Routes that are strictly for unauthenticated users (e.g. login pages)
 const authRoutes = ["/sign-in", "/sign-up"];
 
