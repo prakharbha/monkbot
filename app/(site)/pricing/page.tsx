@@ -37,7 +37,7 @@ export default function PricingPage() {
       {/* Background Light Glow Element */}
       <div className="agent-bg-glow"></div>
 
-      <section className="w-full relative z-10 min-h-[calc(100vh-80px)] xl:min-h-[800px] flex items-center justify-center py-12 md:py-24 overflow-x-hidden">
+      <section className="w-full relative z-10 min-h-[calc(100vh-80px)] xl:min-h-[800px] flex items-center justify-center py-12 md:py-24">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 w-full flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
           {/* Left Side: Copy */}
@@ -62,7 +62,7 @@ export default function PricingPage() {
                 <article
                   key={card.name}
                   className={`rounded-3xl border p-6 md:p-8 flex flex-col bg-white transition-all duration-300 ${card.featured
-                    ? "border-yellow-400 shadow-xl shadow-yellow-400/10 scale-100 md:scale-105 z-10 relative"
+                    ? "border-yellow-400 shadow-2xl shadow-yellow-400/20 ring-1 ring-yellow-400/30 relative z-10"
                     : "border-gray-200 shadow-sm hover:shadow-md"
                     }`}
                 >
