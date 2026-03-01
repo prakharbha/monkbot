@@ -32,6 +32,7 @@ model User {
   email         String    @unique
   password      String
   name          String?
+  emailVerified DateTime?
   role          Role      @default(USER)
   keys          ApiKey[]
   subscriptions Subscription[]
@@ -68,13 +69,12 @@ model ApiKey {
 model AllowedDomain {
   id         String       @id @default(cuid())
   apiKeyId   String
-  domain     String
+  domain     String       @unique
   status     DomainStatus @default(ACTIVE)
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
   apiKey     ApiKey       @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
 
-  @@unique([apiKeyId, domain])
   @@index([domain])
 }
 
@@ -128,4 +128,12 @@ model ChatLog {
 
   @@index([apiKeyId, createdAt])
   @@index([domain])
+}
+
+model VerificationToken {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  token      String   @unique
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
 }

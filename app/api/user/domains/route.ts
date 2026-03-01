@@ -14,17 +14,24 @@ export async function POST(req: Request) {
         const normalized = normalizeDomain(domain);
         if (!normalized) return NextResponse.json({ message: "Invalid domain format" }, { status: 400 });
 
+        const user = await prisma.user.findUnique({ where: { id: session.userId } });
+        if (!user) return NextResponse.json({ message: "User not found" }, { status: 404 });
+        if (!user.emailVerified) {
+            return NextResponse.json({ message: "Please verify your email address before adding domains." }, { status: 403 });
+        }
+
         const keys = await prisma.apiKey.findMany({ where: { userId: session.userId } });
         if (keys.length === 0) return NextResponse.json({ message: "No API key found" }, { status: 404 });
 
         const apiKeyId = keys[0].id;
 
+        // Check if domain is already registered to ANY account globally
         const existing = await prisma.allowedDomain.findFirst({
-            where: { apiKeyId, domain: normalized }
+            where: { domain: normalized }
         });
 
         if (existing) {
-            return NextResponse.json({ message: "Domain already added" }, { status: 400 });
+            return NextResponse.json({ message: "This domain is already registered to an account." }, { status: 400 });
         }
 
         const count = await prisma.allowedDomain.count({ where: { apiKeyId } });

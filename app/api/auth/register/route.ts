@@ -3,6 +3,8 @@ import { prisma } from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { createSession } from "@/lib/session";
 import { generateApiKey } from "@/lib/auth";
+import { sendVerificationEmail } from "@/lib/email";
+import crypto from "crypto";
 
 export async function POST(req: Request) {
     try {
@@ -51,11 +53,24 @@ export async function POST(req: Request) {
             return user;
         });
 
+        // Create verification token
+        const token = crypto.randomBytes(32).toString("hex");
+        await prisma.verificationToken.create({
+            data: {
+                email,
+                token,
+                expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
+            }
+        });
+
+        // Send verification email
+        await sendVerificationEmail(email, token);
+
         // Create session
         await createSession(newUser.id, newUser.email);
 
         return NextResponse.json(
-            { message: "Registration successful", user: { id: newUser.id, email: newUser.email, name: newUser.name } },
+            { message: "Registration successful. Please verify your email.", user: { id: newUser.id, email: newUser.email, name: newUser.name } },
             { status: 201 }
         );
     } catch (error) {
