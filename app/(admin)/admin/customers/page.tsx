@@ -12,6 +12,7 @@ interface AdminUser {
         label: string | null;
         status: string;
         creditsRemaining: number;
+        model: string;
         domains: any[];
     }[];
     subscriptions: {
@@ -47,6 +48,29 @@ export default function AdminCustomersPage() {
 
         fetchUsers();
     }, []);
+
+    const handleModelChange = async (keyId: string, newModel: string) => {
+        try {
+            const res = await fetch("/api/admin/keys/model", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ keyId, model: newModel })
+            });
+            if (res.ok) {
+                setUsers(prevUsers =>
+                    prevUsers.map(u => ({
+                        ...u,
+                        keys: u.keys.map(k => k.id === keyId ? { ...k, model: newModel } : k)
+                    }))
+                );
+            } else {
+                alert("Failed to update API key model");
+            }
+        } catch (e) {
+            console.error(e);
+            alert("Error updating API key model");
+        }
+    };
 
     if (isLoading) {
         return (
@@ -118,8 +142,25 @@ export default function AdminCustomersPage() {
                                                     )}
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 text-center font-medium">
-                                                {activeKeys} <span className="text-gray-400 font-normal">/ {user.keys.length}</span>
+                                            <td className="px-6 py-4">
+                                                <div className="flex flex-col gap-2">
+                                                    {user.keys.map((k) => (
+                                                        <div key={k.id} className="flex items-center gap-2 text-xs border border-gray-100 rounded p-1.5 bg-gray-50/50">
+                                                            <span className={`w-2 h-2 rounded-full ${k.status === 'ACTIVE' ? 'bg-green-500' : 'bg-gray-300'}`}></span>
+                                                            <span className="font-mono text-gray-600 truncate max-w-[80px]" title={k.id}>{k.id.slice(0, 10)}...</span>
+                                                            <select
+                                                                className="ml-auto block w-28 rounded-md border-gray-300 py-1 pl-2 pr-6 text-xs focus:border-blue-500 focus:outline-none focus:ring-blue-500 bg-white"
+                                                                value={k.model || "gpt-4o-mini"}
+                                                                onChange={(e) => handleModelChange(k.id, e.target.value)}
+                                                            >
+                                                                <option value="gpt-4o-mini">4o-mini</option>
+                                                                <option value="gpt-4o">gpt-4o</option>
+                                                                <option value="gpt-3.5-turbo">3.5-turbo</option>
+                                                            </select>
+                                                        </div>
+                                                    ))}
+                                                    {user.keys.length === 0 && <span className="text-xs text-gray-400">No API Keys</span>}
+                                                </div>
                                             </td>
                                             <td className="px-6 py-4 text-center">
                                                 <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">

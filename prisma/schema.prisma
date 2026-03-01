@@ -47,6 +47,7 @@ model ApiKey {
   keyHash           String        @unique
   keyToken          String?       @unique
   label             String?
+  model             String        @default("gpt-4o-mini")
   plan              Plan          @default(FREE)
   status            ApiKeyStatus  @default(ACTIVE)
   monthlyCreditCap  Int?
