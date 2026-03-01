@@ -58,6 +58,10 @@ export async function verifySession() {
         return null;
     }
 
+    // M3 Fix: Roll the session on every request so it keeps sliding forward
+    // This ensures inactive sessions expire and active sessions stay alive
+    await createSession(session.userId, session.email);
+
     return session;
 }
 

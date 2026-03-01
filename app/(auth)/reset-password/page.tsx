@@ -38,12 +38,19 @@ function ResetPasswordForm() {
 
         setIsLoading(true);
 
-        // Simulate API call for mock token
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            const res = await fetch('/api/auth/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token, password }),
+            });
 
-            // In a real app, you would POST to an API route to update the password here
-            // const res = await fetch('/api/auth/reset-password', { ... })
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error || 'Failed to reset password. The link may have expired.');
+                return;
+            }
 
             setSuccess(true);
             setTimeout(() => {

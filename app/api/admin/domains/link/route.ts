@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { normalizeDomain } from "@/lib/site";
+import crypto from "crypto";
 
 export const runtime = "nodejs";
 
@@ -12,7 +13,17 @@ const BodySchema = z.object({
 
 function isAdmin(req: NextRequest): boolean {
   const secret = req.headers.get("x-admin-secret");
-  return !!secret && secret === process.env.ADMIN_SECRET;
+  const adminSecret = process.env.ADMIN_SECRET;
+  if (!secret || !adminSecret) return false;
+  try {
+    const a = Buffer.from(secret);
+    const b = Buffer.from(adminSecret);
+    // Buffers must be same length for timingSafeEqual
+    if (a.length !== b.length) return false;
+    return crypto.timingSafeEqual(a, b);
+  } catch {
+    return false;
+  }
 }
 
 export async function POST(req: NextRequest) {

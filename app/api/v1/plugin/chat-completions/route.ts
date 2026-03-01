@@ -7,10 +7,19 @@ import { prisma } from "@/lib/db";
 
 export const runtime = "nodejs";
 
+const ToolSchema = z.object({
+  type: z.literal("function"),
+  function: z.object({
+    name: z.string().min(1),
+    description: z.string().optional(),
+    parameters: z.record(z.string(), z.unknown()).optional(),
+  }),
+});
+
 const RequestSchema = z.object({
   model: z.string().optional(),
   messages: z.array(z.any()).min(1),
-  tools: z.array(z.any()).optional(),
+  tools: z.array(ToolSchema).optional(),
   tool_choice: z.any().optional()
 });
 
