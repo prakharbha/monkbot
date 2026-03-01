@@ -251,7 +251,7 @@ export default function DashboardPage() {
                                             {apiKey.creditsRemaining.toLocaleString()}
                                         </div>
                                         <div className="text-xs text-black/50 uppercase tracking-widest font-medium mt-1">
-                                            Credits Remaing
+                                            Credits Remaining
                                         </div>
                                     </div>
                                 </div>

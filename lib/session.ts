@@ -2,9 +2,13 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-// Fallback secret for local development. In production, ensure this is set in .env
-const secretKey = process.env.ADMIN_SECRET || "fallback-secret-key-change-me";
-const key = new TextEncoder().encode(secretKey);
+// M2-R2 Fix: Require a dedicated JWT_SECRET — never fall back to a hardcoded string.
+// Set JWT_SECRET in your .env file. It must be different from ADMIN_SECRET.
+const rawSecret = process.env.JWT_SECRET;
+if (!rawSecret) {
+    throw new Error("JWT_SECRET environment variable is not set. Session signing is disabled.");
+}
+const key = new TextEncoder().encode(rawSecret);
 
 export type SessionPayload = {
     userId: string;

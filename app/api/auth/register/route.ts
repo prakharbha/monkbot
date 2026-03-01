@@ -6,7 +6,31 @@ import { generateApiKey } from "@/lib/auth";
 import { sendVerificationEmail } from "@/lib/email";
 import crypto from "crypto";
 
+// C2-R2 Fix: Rate limit registrations to 3 per IP per hour to prevent credit farming
+const registerRateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function isRegisterRateLimited(ip: string): boolean {
+    const now = Date.now();
+    const window = 60 * 60 * 1000; // 1 hour
+    const entry = registerRateLimitMap.get(ip);
+    if (!entry || entry.resetAt < now) {
+        registerRateLimitMap.set(ip, { count: 1, resetAt: now + window });
+        return false;
+    }
+    if (entry.count >= 3) return true;
+    entry.count++;
+    return false;
+}
+
 export async function POST(req: Request) {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    if (isRegisterRateLimited(ip)) {
+        return NextResponse.json(
+            { message: "Too many accounts created from this IP. Please try again later." },
+            { status: 429 }
+        );
+    }
+
     try {
         const { email, password, name } = await req.json();
 
