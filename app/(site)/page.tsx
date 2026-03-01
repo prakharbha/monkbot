@@ -31,6 +31,22 @@ export default function HomePage() {
               Stop switching context. Manage content, tweak designs, and resolve site issues directly through natural language. Connect your WordPress sites to the ultimate agentic backend.
             </p>
 
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                { label: "MCP Server", icon: "⚡", color: "bg-violet-50 border-violet-200 text-violet-700" },
+                { label: "WP Capabilities API", icon: "🔌", color: "bg-blue-50 border-blue-200 text-blue-700" },
+                { label: "First AI Chatbot for WordPress", icon: "🥇", color: "bg-yellow-50 border-yellow-300 text-yellow-800" },
+              ].map(({ label, icon, color }) => (
+                <span
+                  key={label}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-semibold tracking-wide ${color}`}
+                >
+                  <span>{icon}</span>
+                  {label}
+                </span>
+              ))}
+            </div>
+
             <div className="mt-8 flex flex-col sm:flex-row gap-3 w-full">
               <Link href="/get-started" className="flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap">
                 Start for free
