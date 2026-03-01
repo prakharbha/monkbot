@@ -58,6 +58,7 @@ model ApiKey {
   user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   domains           AllowedDomain[]
   creditLedger      CreditLedger[]
+  chatLogs          ChatLog[]
 
   @@index([userId])
   @@index([keyPrefix])
@@ -114,4 +115,17 @@ model Invoice {
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model ChatLog {
+  id         String   @id @default(cuid())
+  apiKeyId   String
+  domain     String
+  prompt     String   @db.Text
+  response   String   @db.Text
+  createdAt  DateTime @default(now())
+  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+
+  @@index([apiKeyId, createdAt])
+  @@index([domain])
 }
