@@ -1,6 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
 
 // M2-R2 Fix: Require a dedicated JWT_SECRET — never fall back to a hardcoded string.
 // Set JWT_SECRET in your .env file. It must be different from ADMIN_SECRET.
@@ -61,10 +60,6 @@ export async function verifySession() {
     if (!session?.userId) {
         return null;
     }
-
-    // M3 Fix: Roll the session on every request so it keeps sliding forward
-    // This ensures inactive sessions expire and active sessions stay alive
-    await createSession(session.userId, session.email);
 
     return session;
 }
