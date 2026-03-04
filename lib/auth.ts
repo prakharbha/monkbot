@@ -44,10 +44,21 @@ export async function authenticatePluginRequest(authorizationHeader: string | nu
     return { ok: false as const, status: 400, message: "Missing X-Monkbot-Domain header." };
   }
 
-  const allowedDomain = key.domains.find((d) => d.status === "ACTIVE" && d.domain === domain);
-  if (!allowedDomain) {
+  // Sort linked domains by createdAt descending (newest first)
+  const activeDomains = key.domains
+    .filter((d) => d.status === "ACTIVE")
+    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+
+  // Enforce maxDomains limit: only the newest N domains are allowed
+  const allowedDomains = activeDomains.slice(0, key.maxDomains);
+
+  const matchedDomain = allowedDomains.find((d) => d.domain === domain);
+  if (!matchedDomain) {
+    if (activeDomains.find((d) => d.domain === domain)) {
+      return { ok: false as const, status: 403, message: "Domain limit exceeded. Only the most recently added domain is active." };
+    }
     return { ok: false as const, status: 403, message: "Domain is not linked to this API key." };
   }
 
-  return { ok: true as const, key, domain };
+  return { ok: true as const, key, domain: matchedDomain.domain };
 }

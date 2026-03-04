@@ -53,6 +53,7 @@ model ApiKey {
   status            ApiKeyStatus  @default(ACTIVE)
   monthlyCreditCap  Int?
   creditsRemaining  Int           @default(50)
+  maxDomains        Int           @default(1)
   lastUsedAt        DateTime?
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt

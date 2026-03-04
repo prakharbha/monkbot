@@ -35,8 +35,8 @@ export async function POST(req: Request) {
         }
 
         const count = await prisma.allowedDomain.count({ where: { apiKeyId } });
-        if (count >= 3 && keys[0].plan === "FREE") {
-            return NextResponse.json({ message: "Free plan is limited to 3 domains." }, { status: 403 });
+        if (count >= keys[0].maxDomains) {
+            return NextResponse.json({ message: `Your plan is limited to ${keys[0].maxDomains} domain${keys[0].maxDomains === 1 ? '' : 's'}.` }, { status: 403 });
         }
 
         const newDomain = await prisma.allowedDomain.create({

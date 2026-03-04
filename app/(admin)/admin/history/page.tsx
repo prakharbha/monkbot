@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 interface ChatLog {
     id: string;
@@ -21,11 +22,14 @@ export default function AdminHistoryPage() {
     const [logs, setLogs] = useState<ChatLog[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+    const searchParams = useSearchParams();
+    const userId = searchParams.get("userId");
 
     useEffect(() => {
         const fetchLogs = async () => {
             try {
-                const res = await fetch("/api/admin/history");
+                const url = userId ? `/api/admin/history?userId=${userId}` : "/api/admin/history";
+                const res = await fetch(url);
                 if (!res.ok) throw new Error("Failed to load chat history");
                 const data = await res.json();
                 setLogs(data.logs || []);
@@ -37,7 +41,7 @@ export default function AdminHistoryPage() {
         };
 
         fetchLogs();
-    }, []);
+    }, [userId]);
 
     if (isLoading) {
         return (

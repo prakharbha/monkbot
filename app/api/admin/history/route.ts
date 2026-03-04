@@ -2,8 +2,11 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { verifySession } from "@/lib/session";
 
-export async function GET() {
+export async function GET(req: Request) {
     try {
+        const { searchParams } = new URL(req.url);
+        const userId = searchParams.get("userId");
+
         const session = await verifySession();
 
         if (!session?.userId) {
@@ -20,7 +23,14 @@ export async function GET() {
             return NextResponse.json({ message: "Forbidden" }, { status: 403 });
         }
 
+        const whereClause = userId ? {
+            apiKey: {
+                userId: userId
+            }
+        } : {};
+
         const logs = await prisma.chatLog.findMany({
+            where: whereClause,
             include: {
                 apiKey: {
                     include: {

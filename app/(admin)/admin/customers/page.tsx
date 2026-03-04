@@ -12,6 +12,7 @@ interface AdminUser {
         label: string | null;
         status: string;
         creditsRemaining: number;
+        maxDomains: number;
         model: string;
         domains: any[];
     }[];
@@ -69,6 +70,43 @@ export default function AdminCustomersPage() {
         } catch (e) {
             console.error(e);
             alert("Error updating API key model");
+        }
+    };
+
+    const handleLimitChange = async (keyId: string, field: 'maxDomains' | 'creditsRemaining', value: number) => {
+        try {
+            // Optimistically update the local state for a snappy UI
+            setUsers(prevUsers =>
+                prevUsers.map(u => ({
+                    ...u,
+                    keys: u.keys.map(k => k.id === keyId ? { ...k, [field]: value } : k)
+                }))
+            );
+
+            // Find current values to send to the server
+            const user = users.find(u => u.keys.some(k => k.id === keyId));
+            const key = user?.keys.find(k => k.id === keyId);
+            if (!key) return;
+
+            const payload = {
+                keyId,
+                maxDomains: field === 'maxDomains' ? value : key.maxDomains,
+                creditsRemaining: field === 'creditsRemaining' ? value : key.creditsRemaining
+            };
+
+            const res = await fetch("/api/admin/keys/limits", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+                alert("Failed to update limit");
+                // In a real app, we'd revert the optimistic update here on failure
+            }
+        } catch (e) {
+            console.error(e);
+            alert("Error updating API key limit");
         }
     };
 
@@ -140,6 +178,9 @@ export default function AdminCustomersPage() {
                                                             {activeSub.status.replace("_", " ")}
                                                         </span>
                                                     )}
+                                                    <a href={`/admin/history?userId=${user.id}`} className="mt-2 text-xs text-blue-600 hover:text-blue-800 hover:underline">
+                                                        View Chat History &rarr;
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
@@ -163,14 +204,36 @@ export default function AdminCustomersPage() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-center">
-                                                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">
-                                                    {totalDomains}
-                                                </span>
+                                                <div className="flex flex-col items-center gap-2">
+                                                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-50 text-blue-700 font-medium text-xs">
+                                                        {totalDomains}
+                                                    </span>
+                                                    {user.keys.length > 0 && (
+                                                        <div className="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                                                            <span>Lim:</span>
+                                                            <input
+                                                                type="number"
+                                                                min="1"
+                                                                className="w-12 border-gray-300 rounded px-1 py-0.5 text-center text-xs"
+                                                                value={user.keys[0].maxDomains || 1}
+                                                                onChange={(e) => handleLimitChange(user.keys[0].id, 'maxDomains', parseInt(e.target.value) || 1)}
+                                                            />
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <span className={`font-mono font-medium ${creditsRemaining < 100 ? 'text-orange-600' : 'text-gray-900'}`}>
-                                                    {creditsRemaining.toLocaleString()}
-                                                </span>
+                                                {user.keys.length > 0 ? (
+                                                    <input
+                                                        type="number"
+                                                        min="0"
+                                                        className={`w-20 border-gray-300 rounded px-2 py-1 text-right text-sm font-mono font-medium ${creditsRemaining < 100 ? 'text-orange-600' : 'text-gray-900'}`}
+                                                        value={user.keys[0].creditsRemaining || 0}
+                                                        onChange={(e) => handleLimitChange(user.keys[0].id, 'creditsRemaining', parseInt(e.target.value) || 0)}
+                                                    />
+                                                ) : (
+                                                    <span className="text-gray-400">—</span>
+                                                )}
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 {lastInvoice ? (
