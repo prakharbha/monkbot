@@ -7,7 +7,7 @@ export async function sendVerificationEmail(email: string, token: string) {
 
     try {
         await resend.emails.send({
-            from: "MonkBot <onboarding@resend.dev>", // Change this to your domain when you verify it in Resend
+            from: "MonkBot <noreply@nandann.com>",
             to: email,
             subject: "Verify your email address - MonkBot",
             html: `

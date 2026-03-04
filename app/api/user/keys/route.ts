@@ -11,15 +11,16 @@ export async function GET() {
     }
 
     try {
-        const keys = await prisma.apiKey.findMany({
-            where: { userId: session.userId },
-            include: {
-                domains: true,
-            },
-            orderBy: { createdAt: "desc" },
-        });
+        const [user, keys] = await Promise.all([
+            prisma.user.findUnique({ where: { id: session.userId }, select: { name: true, emailVerified: true } }),
+            prisma.apiKey.findMany({
+                where: { userId: session.userId },
+                include: { domains: true },
+                orderBy: { createdAt: "desc" },
+            }),
+        ]);
 
-        return NextResponse.json({ keys }, { status: 200 });
+        return NextResponse.json({ keys, userName: user?.name ?? null, emailVerified: !!user?.emailVerified }, { status: 200 });
     } catch (error) {
         console.error("Error fetching user keys:", error);
         return NextResponse.json({ message: "Internal server error" }, { status: 500 });

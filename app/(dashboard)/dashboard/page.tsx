@@ -26,6 +26,9 @@ interface ApiKey {
 export default function DashboardPage() {
     const router = useRouter();
     const [keys, setKeys] = useState<ApiKey[]>([]);
+    const [userName, setUserName] = useState<string | null>(null);
+    const [emailVerified, setEmailVerified] = useState(true);
+    const [resendStatus, setResendStatus] = useState<"idle" | "sending" | "sent">("idle");
     const [isLoading, setIsLoading] = useState(true);
     const [isLoggingOut, setIsLoggingOut] = useState(false);
 
@@ -41,6 +44,8 @@ export default function DashboardPage() {
             }
             const data = await res.json();
             setKeys(data.keys);
+            setUserName(data.userName ?? null);
+            setEmailVerified(data.emailVerified ?? true);
         } catch (error) {
             console.error("Error loading dashboard data:", error);
         } finally {
@@ -51,6 +56,16 @@ export default function DashboardPage() {
     useEffect(() => {
         fetchKeys();
     }, [router]);
+
+    const handleResendVerification = async () => {
+        setResendStatus("sending");
+        try {
+            await fetch("/api/auth/resend-verification", { method: "POST" });
+            setResendStatus("sent");
+        } catch {
+            setResendStatus("idle");
+        }
+    };
 
     const handleLogout = async () => {
         setIsLoggingOut(true);
@@ -151,6 +166,11 @@ export default function DashboardPage() {
                         <Link href="/contact" className="text-sm font-medium text-black/60 hover:text-black transition-colors">
                             Contact
                         </Link>
+                        {userName && (
+                            <span className="hidden md:block text-sm font-medium text-black/70">
+                                {userName.split(" ")[0]}
+                            </span>
+                        )}
                         <button
                             onClick={handleLogout}
                             disabled={isLoggingOut}
@@ -161,6 +181,21 @@ export default function DashboardPage() {
                     </div>
                 </div>
             </header>
+
+            {!emailVerified && (
+                <div className="bg-amber-50 border-b border-amber-200 px-6 py-3 flex items-center justify-between gap-4">
+                    <p className="text-sm text-amber-800">
+                        Please verify your email address to add domains. Check your inbox for a verification link.
+                    </p>
+                    <button
+                        onClick={handleResendVerification}
+                        disabled={resendStatus !== "idle"}
+                        className="shrink-0 text-sm font-medium text-amber-900 underline hover:text-amber-700 disabled:opacity-50"
+                    >
+                        {resendStatus === "sending" ? "Sending..." : resendStatus === "sent" ? "Email sent!" : "Resend email"}
+                    </button>
+                </div>
+            )}
 
             <main className="max-w-6xl mx-auto px-6 pt-10">
                 <div className="flex items-end justify-between mb-8">
