@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -18,7 +18,7 @@ interface ChatLog {
     }
 }
 
-export default function AdminHistoryPage() {
+function AdminHistoryContent() {
     const [logs, setLogs] = useState<ChatLog[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
@@ -132,5 +132,17 @@ export default function AdminHistoryPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function AdminHistoryPage() {
+    return (
+        <Suspense fallback={
+            <div className="w-full h-64 flex items-center justify-center border border-dashed border-gray-300 rounded-xl bg-white/50 animate-pulse">
+                <span className="text-sm font-medium text-gray-400">Loading chat history...</span>
+            </div>
+        }>
+            <AdminHistoryContent />
+        </Suspense>
     );
 }
