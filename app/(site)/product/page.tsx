@@ -22,7 +22,7 @@ export default function ProductPage() {
             <Link href="/get-started" className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl">
               Start Free Trial
             </Link>
-            <Link href="/talk-to-sales" className="bg-white border text-gray-900 hover:border-gray-400 font-medium px-8 py-4 rounded-xl transition-all shadow-sm">
+            <Link href="/contact" className="bg-white border text-gray-900 hover:border-gray-400 font-medium px-8 py-4 rounded-xl transition-all shadow-sm">
               Talk to Sales
             </Link>
           </div>
