@@ -58,7 +58,7 @@ const steps = [
                 steps: [
                     <>Open Telegram and search for <strong>@BotFather</strong> (the official bot manager).</>,
                     <>Send the command <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono">/newbot</code> and follow the prompts to choose a name and username for your bot.</>,
-                    <>BotFather will reply with a <strong>Bot API Token</strong> that looks like: <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono">7123456789:AAHdqTcvCH1vGWJxfSeofSs0K38W-1SJxxx</code>. Copy this token.</>,
+                    <>BotFather will reply with a <strong>Bot API Token</strong> that looks like: <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono break-all">7123456789:AAHdqTcvCH1vGWJxfSeofSs0K38W-1SJxxx</code>. Copy this token.</>,
                 ]
             },
             {
@@ -89,9 +89,9 @@ const colorMap: Record<string, { badge: string; dot: string; num: string }> = {
 
 export default function ResourcesPage() {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white w-full overflow-x-hidden">
             {/* Header */}
-            <section className="bg-gray-50 border-b border-gray-200 py-16 px-4 md:px-6">
+            <section className="bg-gray-50 border-b border-gray-200 py-16 px-6 md:px-8">
                 <div className="max-w-3xl mx-auto">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 bg-white shadow-sm mb-6 text-sm font-medium text-gray-600">
                         <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
@@ -107,7 +107,7 @@ export default function ResourcesPage() {
             </section>
 
             {/* Steps */}
-            <section className="max-w-3xl mx-auto px-4 md:px-6 py-16 space-y-16">
+            <section className="max-w-3xl mx-auto px-6 md:px-8 py-16 space-y-16">
 
                 {steps.map((section) => {
                     const c = colorMap[section.color];
