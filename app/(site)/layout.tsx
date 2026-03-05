@@ -4,7 +4,7 @@ import SiteHeader from "../components/SiteHeader";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main id="main-content" className="min-h-dvh flex flex-col items-center relative">
+    <main id="main-content" className="min-h-dvh flex flex-col items-center relative overflow-x-hidden w-full">
       <SiteHeader />
 
       {children}
