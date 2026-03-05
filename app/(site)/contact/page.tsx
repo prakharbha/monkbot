@@ -112,7 +112,7 @@ export default function ContactPage() {
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Contact Form */}
-          <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col h-full">
+          <div id="contact-form" className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col h-full scroll-mt-24">
             <h2 className="text-2xl font-semibold mb-2">Send a Message</h2>
             <p className="text-sm text-gray-500 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
 
@@ -220,8 +220,8 @@ export default function ContactPage() {
                   Join us in building the agentic future of WordPress. We are actively looking for Senior Backend Engineers and AI Researchers.
                 </p>
               </div>
-              <Link href="#" className="relative z-10 inline-flex items-center justify-center bg-white text-gray-900 font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors text-sm">
-                View Open Roles
+              <Link href="#contact-form" className="relative z-10 inline-flex items-center justify-center bg-white text-gray-900 font-medium px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors text-sm">
+                Send us a message
               </Link>
             </div>
           </div>
