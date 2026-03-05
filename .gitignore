@@ -36,3 +36,4 @@ next-env.d.ts
 
 # plugin build artifacts
 /public/monkbot-plugin-extracted
+*.md
