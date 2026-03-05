@@ -120,14 +120,6 @@ export default function SignUpPage() {
         </div>
       </div>
 
-      <div className="w-full md:hidden flex justify-center bg-slate-50 px-4 pb-6">
-        <img
-          src="/auth/sign-up-mobile.webp"
-          alt="Getting started with Monkbot"
-          className="max-w-[400px] w-full h-auto"
-        />
-      </div>
-
       <div className="hidden md:flex md:w-1/2 h-screen bg-gray-50 border-l border-gray-200 px-10 lg:px-12 py-12 relative overflow-hidden">
         {/* Decorative background blur elements */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-200/20 rounded-full blur-3xl pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
