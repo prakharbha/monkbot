@@ -162,22 +162,26 @@ export default function DashboardPage() {
                     <Link href="/">
                         <img src="/brand/monkbot-logo.png" alt="Monkbot" className="h-14 xl:h-16 w-auto object-contain cursor-pointer" />
                     </Link>
-                    <div className="flex items-center gap-6">
-                        <Link href="/contact" className="text-sm font-medium text-black/60 hover:text-black transition-colors">
-                            Contact
-                        </Link>
+                    <div className="flex items-center gap-4">
                         {userName && (
                             <span className="hidden md:block text-sm font-medium text-black/70">
-                                {userName.split(" ")[0]}
+                                Hi, {userName.split(" ")[0]} 👋
                             </span>
                         )}
-                        <button
-                            onClick={handleLogout}
-                            disabled={isLoggingOut}
-                            className="text-sm font-medium text-black/60 hover:text-black transition-colors"
-                        >
-                            {isLoggingOut ? "Signing out..." : "Sign out"}
-                        </button>
+                        <div className="flex items-center gap-4 pl-4 ml-2 border-l border-gray-200">
+                            <Link href="/contact" className="text-sm font-medium text-black/50 hover:text-black transition-colors flex items-center gap-1.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><line x1="4.93" x2="9.17" y1="4.93" y2="9.17" /><line x1="14.83" x2="19.07" y1="14.83" y2="19.07" /><line x1="14.83" x2="19.07" y1="9.17" y2="4.93" /><line x1="14.83" x2="18.36" y1="9.17" y2="5.64" /><line x1="4.93" x2="9.17" y1="19.07" y2="14.83" /></svg>
+                                <span className="hidden sm:inline">Support</span>
+                            </Link>
+                            <button
+                                onClick={handleLogout}
+                                disabled={isLoggingOut}
+                                className="text-sm font-medium text-black/50 hover:text-black transition-colors flex items-center gap-1.5"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" x2="9" y1="12" y2="12" /></svg>
+                                <span className="hidden sm:inline">{isLoggingOut ? "..." : "Sign out"}</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
