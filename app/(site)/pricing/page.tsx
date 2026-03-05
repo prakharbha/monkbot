@@ -11,7 +11,7 @@ const pricingCards = [
     suffix: "/forever",
     note: "Everything you need to try out MonkBot.",
     cta: "Start for free",
-    href: "/get-started",
+    href: "/sign-in",
     features: ["50 credits", "1 Domain", "Standard Email Support"],
     featured: true,
     isWaitlist: false,

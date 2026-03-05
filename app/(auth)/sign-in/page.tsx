@@ -182,10 +182,7 @@ export default function SignInPage() {
               </form>
 
               <p className="mt-6 text-sm text-black/60 text-center">
-                Don&apos;t have an account?{" "}
-                <Link href="/sign-up" className="text-black hover:underline font-medium">
-                  Sign up
-                </Link>
+                Need an account? New users can sign in to create one automatically.
               </p>
             </div>
           )}
