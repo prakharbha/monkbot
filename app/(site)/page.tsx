@@ -91,7 +91,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 w-full">
-              <Link href="/sign-in" className="flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap">
+              <Link href="/sign-up" className="flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-6 py-3 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap">
                 Start for free
               </Link>
               <Link href="/contact" className="flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-gray-300 text-gray-900 text-sm font-medium px-6 py-3 rounded-xl transition-all shadow-sm hover:shadow whitespace-nowrap">

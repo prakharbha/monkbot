@@ -47,7 +47,7 @@ export default function ProductPage() {
             MonkBot isn't just a basic chatbot. It's an intelligent agent hooked directly into WordPress core APIs, capable of performing multi-step operations instantly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/sign-in" className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl">
+            <Link href="/sign-up" className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl">
               Start Free Trial
             </Link>
             <Link href="/contact" className="bg-white border text-gray-900 hover:border-gray-400 font-medium px-8 py-4 rounded-xl transition-all shadow-sm">

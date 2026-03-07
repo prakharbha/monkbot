@@ -128,16 +128,9 @@ export default function SignInPage() {
               <h1 className="text-[32px] leading-tight tracking-tight">Sign in to Monkbot</h1>
               <p className="mt-2 text-sm text-black/60">Welcome back! Please sign in to continue.</p>
 
-              <button
-                type="button"
-                className="mt-5 h-11 w-full border border-gray-300 rounded-md text-sm font-medium bg-white hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
-              >
-                Continue with Google
-              </button>
-
-              <div className="my-6 flex items-center gap-3">
+              <div className="my-6 flex items-center gap-3 mt-5">
                 <div className="h-px flex-1 bg-gray-200" />
-                <span className="text-xs text-black/40 uppercase tracking-widest font-medium">or</span>
+                <span className="text-xs text-black/40 uppercase tracking-widest font-medium">sign in</span>
                 <div className="h-px flex-1 bg-gray-200" />
               </div>
 
@@ -182,7 +175,10 @@ export default function SignInPage() {
               </form>
 
               <p className="mt-6 text-sm text-black/60 text-center">
-                Need an account? New users can sign in to create one automatically.
+                Don&apos;t have an account?{" "}
+                <Link href="/sign-up" className="text-black font-medium hover:underline">
+                  Sign up free
+                </Link>
               </p>
             </div>
           )}
