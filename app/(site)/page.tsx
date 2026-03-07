@@ -132,7 +132,7 @@ export default function HomePage() {
 
                 <div className="w-full max-w-[250px] mx-auto flex flex-col gap-4 mt-auto">
                   {/* Example 1 */}
-                  <div className="flex flex-col gap-1.5 opacity-40">
+                  <div className="flex flex-col gap-1.5 opacity-40" aria-hidden="true">
                     <div className="flex gap-2 w-full">
                       <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
                         <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
@@ -148,7 +148,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Example 2 */}
-                  <div className="flex flex-col gap-1.5 opacity-70">
+                  <div className="flex flex-col gap-1.5 opacity-70" aria-hidden="true">
                     <div className="flex gap-2 w-full">
                       <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
                         <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
