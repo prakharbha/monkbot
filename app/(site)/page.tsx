@@ -137,13 +137,13 @@ export default function HomePage() {
                       <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
                         <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
                       </div>
-                      <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-600 w-[calc(100%-20px)] leading-tight shadow-sm text-left">Check site health.</div>
+                      <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-800 w-[calc(100%-20px)] leading-tight shadow-sm text-left">Check site health.</div>
                     </div>
                     <div className="flex gap-2 flex-row-reverse w-full">
                       <div className="w-5 h-5 rounded-full bg-yellow-50 border border-yellow-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
                         <span className="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
                       </div>
-                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-700 w-[calc(100%-20px)] leading-tight tracking-tight shadow-sm text-left">All systems nominal. No broken links.</div>
+                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-900 w-[calc(100%-20px)] leading-tight tracking-tight shadow-sm text-left">All systems nominal. No broken links.</div>
                     </div>
                   </div>
 
@@ -153,13 +153,13 @@ export default function HomePage() {
                       <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
                         <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
                       </div>
-                      <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-600 w-[calc(100%-20px)] leading-tight shadow-sm text-left">Draft a new post about our Spring Collection.</div>
+                      <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-800 w-[calc(100%-20px)] leading-tight shadow-sm text-left">Draft a new post about our Spring Collection.</div>
                     </div>
                     <div className="flex gap-2 flex-row-reverse w-full">
                       <div className="w-5 h-5 rounded-full bg-yellow-50 border border-yellow-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
                         <span className="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
                       </div>
-                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-700 w-[calc(100%-20px)] leading-tight tracking-tight shadow-sm text-left">Draft created with ID 142. Ready for review!</div>
+                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-900 w-[calc(100%-20px)] leading-tight tracking-tight shadow-sm text-left">Draft created with ID 142. Ready for review!</div>
                     </div>
                   </div>
 
@@ -169,13 +169,13 @@ export default function HomePage() {
                       <div className="w-6 h-6 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
                         <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
                       </div>
-                      <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-xs text-gray-600 w-[calc(100%-24px)] leading-tight shadow-sm text-left">Update the winter sale post status to published.</div>
+                      <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-xs text-gray-800 w-[calc(100%-24px)] leading-tight shadow-sm text-left">Update the winter sale post status to published.</div>
                     </div>
                     <div className="flex gap-2 flex-row-reverse w-full">
                       <div className="w-6 h-6 rounded-full bg-yellow-50 border border-yellow-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
                         <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
                       </div>
-                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[10px] sm:text-xs text-gray-700 w-[calc(100%-24px)] leading-tight tracking-tight shadow-sm text-left">Done. The post is now live!</div>
+                      <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[10px] sm:text-xs text-gray-900 w-[calc(100%-24px)] leading-tight tracking-tight shadow-sm text-left">Done. The post is now live!</div>
                     </div>
                   </div>
                 </div>

@@ -14,12 +14,10 @@ export default function SiteHeader() {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                // We don't have a /api/auth/me yet, but we have /api/user/keys which returns 401 if not authed.
-                // It's a quick way to check, or we can just look for the session cookie if we use next-client-cookies.
-                // A better way is fetching a brief user info route. Let's create one or just use keys to check auth for now.
-                const res = await fetch("/api/user/keys");
+                const res = await fetch("/api/auth/me");
                 if (res.ok) {
-                    setUser({ name: "User" }); // Ideally we'd return the user's name from this API
+                    const data = await res.json();
+                    setUser(data.user ? { name: data.user.email } : null);
                 } else {
                     setUser(null);
                 }
