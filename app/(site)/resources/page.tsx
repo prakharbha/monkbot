@@ -1,5 +1,53 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import PluginDownloadCard from "../../components/PluginDownloadCard";
+
+const BASE_URL = "https://monkbot.app";
+
+export const metadata: Metadata = {
+  title: "Setup Guide | Get Started with Monkbot in 3 Steps",
+  description:
+    "Connect your WordPress site to Monkbot in minutes. Create an account, install the WordPress plugin, and optionally set up Telegram notifications. Step-by-step setup guide.",
+  alternates: { canonical: `${BASE_URL}/resources` },
+  openGraph: {
+    title: "Monkbot Setup Guide | WordPress AI in 3 Steps",
+    description:
+      "From zero to a fully connected AI assistant for your WordPress site in three steps. Get your API key, install the plugin, and start automating.",
+    url: `${BASE_URL}/resources`,
+  },
+};
+
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Set Up Monkbot for WordPress",
+  description:
+    "Connect your WordPress site to Monkbot AI in three steps: create an account, install the plugin, and optionally configure Telegram notifications.",
+  totalTime: "PT10M",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Create an Account & Get Your API Key",
+      text: "Sign up at monkbot.app, verify your email, generate an API key from your dashboard, and add your WordPress domain.",
+      url: `${BASE_URL}/sign-in`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Install the Plugin & Connect to Monkbot",
+      text: "Download the Monkbot plugin zip, install it via WordPress Admin > Plugins > Add New, activate it, and paste your API key in MonkBot > Settings.",
+      url: `${BASE_URL}/resources#plugin`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Set Up Telegram Integration (Optional)",
+      text: "Create a Telegram bot via @BotFather, get your Chat ID, then configure it in WordPress under MonkBot > Settings > Telegram.",
+      url: `${BASE_URL}/resources#telegram`,
+    },
+  ],
+};
 
 const steps = [
     {
@@ -90,6 +138,10 @@ const colorMap: Record<string, { badge: string; dot: string; num: string }> = {
 export default function ResourcesPage() {
     return (
         <div className="min-h-screen bg-white w-full overflow-x-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+            />
             {/* Header */}
             <section className="bg-gray-50 border-b border-gray-200 py-16 px-6 md:px-8">
                 <div className="max-w-3xl mx-auto">

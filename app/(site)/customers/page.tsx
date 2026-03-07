@@ -1,11 +1,66 @@
 import { Metadata } from 'next';
 
+const BASE_URL = "https://monkbot.app";
+
 export const metadata: Metadata = {
-    title: 'Customer Feedback | Monkbot',
-    description: 'See how agencies and businesses are using MonkBot to scale their WordPress operations.',
+    title: 'Customer Stories | WordPress Teams Using Monkbot',
+    description: 'See how agencies and WordPress teams use Monkbot to automate plugin updates, content drafting, WooCommerce management, and spam moderation at scale.',
+    alternates: { canonical: `${BASE_URL}/customers` },
+    openGraph: {
+        title: 'Customer Stories | WordPress Teams Using Monkbot',
+        description: 'Real stories from agencies saving hours every week with Monkbot AI WordPress automation.',
+        url: `${BASE_URL}/customers`,
+    },
+};
+
+const reviewsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Monkbot",
+    description: "AI-powered WordPress operations platform",
+    url: BASE_URL,
+    aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "5",
+        bestRating: "5",
+        worstRating: "1",
+    },
+    review: [
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Sarah Jenkins" },
+            reviewBody: "MonkBot has fundamentally changed how we handle routine maintenance. We used to spend 15 hours a week manually updating plugins across 40 WooCommerce sites. Now, a single Slack prompt handles updates.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Marcus T." },
+            reviewBody: "The database introspection feature alone is worth the price. I no longer need to grant dev access to phpMyAdmin just so they can check if a custom table got created.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Elena Rodriguez" },
+            reviewBody: "We integrated MonkBot into our custom dashboard. Clients can now ask 'how many sales did I make today' and our platform queries the WP REST API via MonkBot securely.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+    ],
 };
 
 export default function CustomersPage() {
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsJsonLd) }}
+            />
+            <CustomersContent />
+        </>
+    );
+}
+
+function CustomersContent() {
     const testimonials = [
         {
             text: "MonkBot has fundamentally changed how we handle routine maintenance. We used to spend 15 hours a week manually updating plugins across 40 WooCommerce sites and dealing with the occasional breakages. Now, a single Slack prompt handles updates and reports back only if visual regressions are detected.",

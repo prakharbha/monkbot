@@ -1,11 +1,54 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import BackgroundGlow from "../components/BackgroundGlow";
 import ChatSlider from "../components/ChatSlider";
 import WordRotator from "../components/WordRotator";
 
+const BASE_URL = "https://monkbot.app";
+
+export const metadata: Metadata = {
+  title: "Monkbot | The AI Operations Platform for WordPress",
+  description:
+    "Stop switching context. Manage content, tweak designs, and resolve site issues directly through natural language. Connect your WordPress sites to the ultimate agentic backend.",
+  alternates: { canonical: BASE_URL },
+  openGraph: {
+    title: "Monkbot | The AI Operations Platform for WordPress",
+    description:
+      "Automate WordPress content, plugins, and WooCommerce operations through natural language. The first AI MCP server built for WordPress agencies.",
+    url: BASE_URL,
+  },
+};
+
+const softwareAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Monkbot",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "WordPress",
+  url: BASE_URL,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    description: "Free plan available with 50 credits and 1 domain",
+  },
+  description:
+    "Monkbot is an AI-powered WordPress operations platform that lets you manage content, plugins, WooCommerce, and site health through natural language commands.",
+  publisher: {
+    "@type": "Organization",
+    name: "Monkbot",
+    url: BASE_URL,
+  },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
       {/* Interactive Antigravity Particle Field */}
       <BackgroundGlow />
 
@@ -92,7 +135,7 @@ export default function HomePage() {
                   <div className="flex flex-col gap-1.5 opacity-40">
                     <div className="flex gap-2 w-full">
                       <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
-                        <img src="https://i.pravatar.cc/100?img=33" alt="User Avatar" className="w-full h-full object-cover" />
+                        <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
                       </div>
                       <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-600 w-[calc(100%-20px)] leading-tight shadow-sm text-left">Check site health.</div>
                     </div>
@@ -108,7 +151,7 @@ export default function HomePage() {
                   <div className="flex flex-col gap-1.5 opacity-70">
                     <div className="flex gap-2 w-full">
                       <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
-                        <img src="https://i.pravatar.cc/100?img=33" alt="User Avatar" className="w-full h-full object-cover" />
+                        <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
                       </div>
                       <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-[11px] text-gray-600 w-[calc(100%-20px)] leading-tight shadow-sm text-left">Draft a new post about our Spring Collection.</div>
                     </div>
@@ -124,7 +167,7 @@ export default function HomePage() {
                   <div className="flex flex-col gap-1.5">
                     <div className="flex gap-2 w-full">
                       <div className="w-6 h-6 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 flex items-center justify-center border border-gray-300">
-                        <img src="https://i.pravatar.cc/100?img=33" alt="User Avatar" className="w-full h-full object-cover" />
+                        <Image src="https://i.pravatar.cc/100?img=33" alt="User Avatar" width={24} height={24} className="w-full h-full object-cover" />
                       </div>
                       <div className="bg-gray-100 rounded-lg p-2 text-[10px] sm:text-xs text-gray-600 w-[calc(100%-24px)] leading-tight shadow-sm text-left">Update the winter sale post status to published.</div>
                     </div>

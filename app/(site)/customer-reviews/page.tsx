@@ -1,8 +1,57 @@
 import { Metadata } from 'next';
 
+const BASE_URL = "https://monkbot.app";
+
 export const metadata: Metadata = {
-    title: 'Customer Reviews | Monkbot',
-    description: 'See how agencies and businesses are using MonkBot to scale their WordPress operations.',
+    title: 'Customer Reviews | WordPress Agencies Love Monkbot',
+    description: 'Read real reviews from WordPress agencies and developers using Monkbot to automate plugin updates, content creation, WooCommerce management, and spam moderation.',
+    alternates: { canonical: `${BASE_URL}/customer-reviews` },
+    openGraph: {
+        title: 'Customer Reviews | WordPress Teams Love Monkbot',
+        description: 'Real reviews from agencies saving hours every week with Monkbot AI WordPress automation.',
+        url: `${BASE_URL}/customer-reviews`,
+    },
+};
+
+const reviewsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Monkbot",
+    description: "AI-powered WordPress operations platform",
+    url: BASE_URL,
+    aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "7",
+        bestRating: "5",
+        worstRating: "1",
+    },
+    review: [
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Sarah Jenkins" },
+            reviewBody: "MonkBot has fundamentally changed how we handle routine maintenance. A single Slack prompt handles updates across 40 WooCommerce sites.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Marcus T." },
+            reviewBody: "The database introspection feature alone is worth the price.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Jason Lee" },
+            reviewBody: "MonkBot's ability to generate and publish content adhering to our brand guidelines is mind-blowing. It saved us countless hours.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+        {
+            "@type": "Review",
+            author: { "@type": "Person", name: "Samantha Bright" },
+            reviewBody: "We replaced three disparate automation tools with just Monkbot. From WooCommerce order syncing to SEO meta descriptions, it behaves as the perfect orchestration layer.",
+            reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        },
+    ],
 };
 
 export default function CustomerReviewsPage() {
@@ -74,6 +123,10 @@ export default function CustomerReviewsPage() {
 
     return (
         <div className="min-h-screen w-full bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsJsonLd) }}
+            />
             {/* Header */}
             <section className="bg-white border-b border-gray-100 py-20 px-4 md:px-6 w-full">
                 <div className="max-w-4xl mx-auto text-center">

@@ -1,14 +1,42 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from 'next';
 
+const BASE_URL = "https://monkbot.app";
+
 export const metadata: Metadata = {
-  title: 'Features | Monkbot',
-  description: 'Explore the powerful features that make Monkbot the ultimate AI Copilot for WordPress.',
+  title: 'Product Features | WordPress AI Automation Platform',
+  description: 'Explore Monkbot\'s core capabilities: AI content generation, plugin updates, WooCommerce management, database introspection, and omnichannel WordPress automation from Slack, Teams, and more.',
+  alternates: { canonical: `${BASE_URL}/product` },
+  openGraph: {
+    title: 'Monkbot Product Features | WordPress AI Automation',
+    description: 'From content drafting to WooCommerce management—Monkbot gives you primitive tools for complex CMS operations. Invoke from Slack, Teams, or custom API endpoints.',
+    url: `${BASE_URL}/product`,
+  },
+};
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Monkbot Core Capabilities",
+  description: "AI-powered features for WordPress automation",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Dynamic Content Generation", description: "Draft, edit, and publish WordPress posts automatically using state-of-the-art LLMs." },
+    { "@type": "ListItem", position: 2, name: "Plugin & Theme Updates", description: "Query outdated plugins and instantly run safe, background updates on your WordPress sites." },
+    { "@type": "ListItem", position: 3, name: "Database Introspection", description: "Safely query WordPress database tables and structure without opening phpMyAdmin." },
+    { "@type": "ListItem", position: 4, name: "WooCommerce Management", description: "Update order statuses, check inventory, and analyze sales via natural language prompts." },
+    { "@type": "ListItem", position: 5, name: "User Moderation", description: "Review comments, combat spam, and manage subscriber roles instantly." },
+    { "@type": "ListItem", position: 6, name: "Custom Code Execution", description: "Safely execute scoped PHP scripts directly inside the WordPress sandbox." },
+  ],
 };
 
 export default function ProductPage() {
   return (
     <div className="min-h-screen bg-white pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       {/* Header */}
       <section className="bg-gray-50 border-b border-gray-200 py-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -84,7 +112,7 @@ export default function ProductPage() {
               </div>
               <div className="flex gap-4 p-4 rounded-xl bg-gray-800 border border-gray-700 ml-8">
                 <div className="w-10 h-10 rounded bg-white flex-shrink-0 p-1">
-                  <img src="/brand/monkbot-logo.png" alt="Monkbot" className="w-full h-full object-contain grayscale opacity-80" />
+                  <Image src="/brand/monkbot-logo.png" alt="Monkbot" width={40} height={40} className="w-full h-full object-contain grayscale opacity-80" />
                 </div>
                 <div>
                   <div className="font-semibold text-sm mb-1 text-white">MonkBot <span className="text-xs bg-gray-700 px-1.5 py-0.5 rounded text-gray-400 ml-2">APP</span></div>
