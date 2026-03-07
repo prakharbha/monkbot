@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const LAST_UPDATED = "March 7, 2025";
-const CONTACT_EMAIL = "privacy@monkbot.app";
+const CONTACT_URL = "/contact";
 
 export default function PrivacyPage() {
   return (
@@ -40,8 +40,8 @@ export default function PrivacyPage() {
               and our software-as-a-service platform (collectively, the &ldquo;Service&rdquo;).
             </p>
             <p className="mt-3">
-              If you have questions about this policy, contact us at{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>.
+              If you have questions about this policy,{" "}
+              <Link href={CONTACT_URL} className="text-blue-600 hover:underline">contact us</Link>.
             </p>
           </section>
 
@@ -129,8 +129,8 @@ export default function PrivacyPage() {
               As a beta product, we have not yet established fixed data retention schedules. We retain your account data for as long as your account is active or as needed to provide the Service. API call logs may be retained for billing, debugging, and abuse prevention purposes for an unspecified period. We reserve the right to delete data at any time during the beta phase.
             </p>
             <p className="mt-3">
-              You may request deletion of your account and associated personal data by contacting us at{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>. Note that data already transmitted to third-party AI providers cannot be retrieved or deleted by us.
+              You may request deletion of your account and associated personal data by{" "}
+              <Link href={CONTACT_URL} className="text-blue-600 hover:underline">contacting us</Link>. Note that data already transmitted to third-party AI providers cannot be retrieved or deleted by us.
             </p>
           </section>
 
@@ -152,8 +152,8 @@ export default function PrivacyPage() {
               <li>Lodge a complaint with a supervisory authority.</li>
             </ul>
             <p className="mt-3">
-              To exercise these rights, contact us at{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>.
+              To exercise these rights,{" "}
+              <Link href={CONTACT_URL} className="text-blue-600 hover:underline">contact us</Link>.
             </p>
           </section>
 
@@ -186,8 +186,7 @@ export default function PrivacyPage() {
             <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm">
               <p className="font-semibold text-gray-900">MonkBot Inc.</p>
               <p className="mt-1">
-                Email:{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>
+                <Link href={CONTACT_URL} className="text-blue-600 hover:underline">Contact us via our contact page</Link>
               </p>
             </div>
           </section>
