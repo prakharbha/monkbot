@@ -14,7 +14,7 @@ export default function Footer() {
                 </div>
 
                 <div className="col-span-1">
-                    <h4 className="font-semibold text-gray-900 mb-4">Product</h4>
+                    <p className="font-semibold text-gray-900 mb-4">Product</p>
                     <ul className="space-y-2 text-sm text-gray-600">
                         <li><Link href="/product" className="hover:text-gray-900 transition-colors">Features</Link></li>
                         <li><Link href="/pricing" className="hover:text-gray-900 transition-colors">Pricing</Link></li>
@@ -22,14 +22,14 @@ export default function Footer() {
                 </div>
 
                 <div className="col-span-1">
-                    <h4 className="font-semibold text-gray-900 mb-4">Resources</h4>
+                    <p className="font-semibold text-gray-900 mb-4">Resources</p>
                     <ul className="space-y-2 text-sm text-gray-600">
                         <li><Link href="/resources" className="hover:text-gray-900 transition-colors">Documentation</Link></li>
                     </ul>
                 </div>
 
                 <div className="col-span-1">
-                    <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
+                    <p className="font-semibold text-gray-900 mb-4">Company</p>
                     <ul className="space-y-2 text-sm text-gray-600">
                         <li><Link href="/contact" className="hover:text-gray-900 transition-colors">Contact</Link></li>
                     </ul>
