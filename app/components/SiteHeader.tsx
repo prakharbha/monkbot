@@ -80,7 +80,7 @@ export default function SiteHeader() {
                                 ) : (
                                     <Link href="/sign-in" className="inline-flex items-center rounded-md text-foreground text-sm xl:text-base font-normal tracking-tight border border-foreground px-3 xl:px-4 py-1">Sign in</Link>
                                 )}
-                                <Link href="/sign-in" className="inline-flex items-center rounded-md tracking-tight bg-foreground border border-foreground px-3 xl:px-4 py-1 text-white text-sm xl:text-base font-normal transition-colors duration-200">Get started</Link>
+                                <Link href="/sign-up" className="inline-flex items-center rounded-md tracking-tight bg-foreground border border-foreground px-3 xl:px-4 py-1 text-white text-sm xl:text-base font-normal transition-colors duration-200">Get started</Link>
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@ export default function SiteHeader() {
                                 </Link>
                             </div>
                             <div className="flex items-center gap-3 z-[60]">
-                                <Link href="/sign-in" className="inline-flex items-center rounded-md tracking-tight bg-foreground border border-foreground px-3 py-1 text-white text-sm font-normal transition-colors duration-200">Get started</Link>
+                                <Link href="/sign-up" className="inline-flex items-center rounded-md tracking-tight bg-foreground border border-foreground px-3 py-1 text-white text-sm font-normal transition-colors duration-200">Get started</Link>
                                 <button
                                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                                     className="p-1.5 focus:outline-none"
@@ -146,7 +146,7 @@ export default function SiteHeader() {
                         ) : (
                             <Link href="/sign-in" className="w-full text-center rounded-lg text-foreground font-medium border border-foreground px-6 py-3" onClick={() => setMobileMenuOpen(false)}>Sign in</Link>
                         )}
-                        <Link href="/sign-in" className="w-full text-center rounded-lg bg-foreground text-white font-medium px-6 py-3" onClick={() => setMobileMenuOpen(false)}>Get started</Link>
+                        <Link href="/sign-up" className="w-full text-center rounded-lg bg-foreground text-white font-medium px-6 py-3" onClick={() => setMobileMenuOpen(false)}>Get started</Link>
                     </div>
                 </div>
             )}
