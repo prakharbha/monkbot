@@ -106,7 +106,7 @@ export default function ProductPage() {
               <div className="flex gap-4 p-4 rounded-xl bg-gray-900 border border-gray-700">
                 <div className="w-10 h-10 rounded bg-indigo-500 flex-shrink-0 flex items-center justify-center font-bold text-white shadow-inner">P</div>
                 <div>
-                  <div className="font-semibold text-sm mb-1">Pete (Admin) <span className="text-gray-500 text-xs font-normal ml-2">12:04 PM</span></div>
+                  <div className="font-semibold text-sm mb-1">Pete (Admin) <span className="text-gray-400 text-xs font-normal ml-2">12:04 PM</span></div>
                   <p className="text-sm text-gray-300">@MonkBot Check if WooCommerce needs an update on the staging site.</p>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default function ProductPage() {
                   <Image src="/brand/monkbot-logo.png" alt="Monkbot" width={40} height={40} className="w-full h-full object-contain grayscale opacity-80" />
                 </div>
                 <div>
-                  <div className="font-semibold text-sm mb-1 text-white">MonkBot <span className="text-xs bg-gray-700 px-1.5 py-0.5 rounded text-gray-400 ml-2">APP</span></div>
+                  <div className="font-semibold text-sm mb-1 text-white">MonkBot <span className="text-xs bg-gray-700 px-1.5 py-0.5 rounded text-gray-200 ml-2">APP</span></div>
                   <p className="text-sm text-gray-300 mb-2">Yes, WooCommerce v8.5.2 is available. Want me to run the update?</p>
                   <div className="flex gap-2 mt-2">
                     <button className="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded transition-colors">Yes, update now</button>

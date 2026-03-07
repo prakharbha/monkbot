@@ -251,7 +251,7 @@ export default function ChatSlider() {
                         key={idx}
                         onClick={() => goToSlide(idx)}
                         aria-label={`Go to slide ${idx + 1}`}
-                        className="flex items-center justify-center py-5"
+                        className="flex items-center justify-center py-5 min-w-[44px]"
                     >
                         <span className={`block h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-6 bg-gray-800" : "w-1.5 bg-gray-300 hover:bg-gray-400"}`} />
                     </button>
