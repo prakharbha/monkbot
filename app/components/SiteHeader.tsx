@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function SiteHeader() {
@@ -59,7 +60,7 @@ export default function SiteHeader() {
                         <div className="hidden lg:flex lg:items-center w-full gap-8 xl:gap-16">
                             <div className="flex-shrink-0">
                                 <Link href="/" className="inline-flex items-center">
-                                    <img src="/brand/monkbot-logo.png" alt="Monkbot" className="h-14 xl:h-16 w-auto object-contain cursor-pointer" />
+                                    <Image src="/brand/monkbot-logo.png" alt="Monkbot" width={160} height={64} priority className="h-14 xl:h-16 w-auto object-contain cursor-pointer" style={{ width: "auto" }} />
                                 </Link>
                             </div>
                             <div className="flex items-center gap-4 xl:gap-8 flex-1">
@@ -89,7 +90,7 @@ export default function SiteHeader() {
                         <div className="flex lg:hidden items-center justify-between w-full">
                             <div className="flex-shrink-0 z-[60]">
                                 <Link href="/" className="inline-flex items-center">
-                                    <img src="/brand/monkbot-logo.png" alt="Monkbot" className="h-11 w-auto object-contain cursor-pointer" />
+                                    <Image src="/brand/monkbot-logo.png" alt="Monkbot" width={160} height={44} priority className="h-11 w-auto object-contain cursor-pointer" style={{ width: "auto" }} />
                                 </Link>
                             </div>
                             <div className="flex items-center gap-3 z-[60]">
@@ -117,7 +118,7 @@ export default function SiteHeader() {
                     {/* Header inside overlay */}
                     <div className="flex items-center justify-between h-12 mb-8">
                         <Link href="/" className="inline-flex items-center" onClick={() => setMobileMenuOpen(false)}>
-                            <img src="/brand/monkbot-logo.png" alt="Monkbot" className="h-11 w-auto object-contain cursor-pointer" />
+                            <Image src="/brand/monkbot-logo.png" alt="Monkbot" width={160} height={44} className="h-11 w-auto object-contain cursor-pointer" style={{ width: "auto" }} />
                         </Link>
                         <button
                             onClick={() => setMobileMenuOpen(false)}
