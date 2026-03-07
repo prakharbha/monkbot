@@ -19,6 +19,7 @@ export default function SignUpPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [agreed, setAgreed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -30,6 +31,10 @@ export default function SignUpPage() {
     }
     if (password.length < 8) {
       setError("Password must be at least 8 characters.");
+      return;
+    }
+    if (!agreed) {
+      setError("You must accept the Terms of Service and Privacy Policy to continue.");
       return;
     }
 
@@ -110,10 +115,27 @@ export default function SignUpPage() {
                   placeholder="••••••••"
                 />
               </div>
+              <div className="flex items-start gap-3 mt-2">
+                <input
+                  id="agreed"
+                  type="checkbox"
+                  checked={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 rounded border-gray-300 text-black focus:ring-black cursor-pointer flex-shrink-0"
+                />
+                <label htmlFor="agreed" className="text-xs text-black/60 leading-relaxed cursor-pointer">
+                  I agree to MonkBot&apos;s{" "}
+                  <Link href="/terms" target="_blank" className="text-black font-medium hover:underline">Terms of Service</Link>
+                  {" "}and{" "}
+                  <Link href="/privacy" target="_blank" className="text-black font-medium hover:underline">Privacy Policy</Link>,
+                  including the use of my data by third-party AI providers (OpenAI, Anthropic) and MonkBot&apos;s WordPress and MCP services.
+                </label>
+              </div>
+
               <button
-                disabled={isLoading}
+                disabled={isLoading || !agreed}
                 type="submit"
-                className="h-11 rounded-md bg-black text-white text-sm font-medium hover:bg-gray-900 transition-colors mt-2 disabled:opacity-50"
+                className="h-11 rounded-md bg-black text-white text-sm font-medium hover:bg-gray-900 transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Creating account..." : "Create free account"}
               </button>
@@ -124,13 +146,6 @@ export default function SignUpPage() {
               <Link href="/sign-in" className="text-black font-medium hover:underline">
                 Sign in
               </Link>
-            </p>
-
-            <p className="mt-4 text-xs text-black/40 text-center leading-relaxed">
-              By creating an account you agree to our{" "}
-              <Link href="#" className="hover:text-black/60 underline">Terms of Service</Link>
-              {" "}and{" "}
-              <Link href="#" className="hover:text-black/60 underline">Privacy Policy</Link>.
             </p>
           </div>
         </div>
