@@ -64,9 +64,6 @@ export const metadata: Metadata = {
       "Connect your WordPress sites to a managed AI backend. Automate via natural language.",
     images: ["/brand/monkbot-logo.png"],
   },
-  alternates: {
-    canonical: BASE_URL,
-  },
 };
 
 const organizationJsonLd = {
