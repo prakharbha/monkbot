@@ -41,8 +41,8 @@ export default function Footer() {
                     &copy; {new Date().getFullYear()} MonkBot Inc. All rights reserved.
                 </p>
                 <div className="flex gap-4 text-xs text-gray-500">
-                    <Link href="#" className="hover:text-gray-900 transition-colors">Privacy Policy</Link>
-                    <Link href="#" className="hover:text-gray-900 transition-colors">Terms of Service</Link>
+                    <Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link>
+                    <Link href="/terms" className="hover:text-gray-900 transition-colors">Terms of Service</Link>
                 </div>
             </div>
         </footer>
