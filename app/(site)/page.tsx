@@ -195,7 +195,7 @@ export default function HomePage() {
                   <div className="h-2 w-4/5 bg-gray-100 rounded"></div>
                   <div className="h-2 w-5/6 bg-gray-100 rounded"></div>
                 </div>
-                <div className="text-[10px] text-green-600 font-mono text-right font-semibold border-t border-gray-100 pt-2">
+                <div className="text-[10px] text-green-700 font-mono text-right font-semibold border-t border-gray-100 pt-2">
                   VERIFIED
                 </div>
               </div>
