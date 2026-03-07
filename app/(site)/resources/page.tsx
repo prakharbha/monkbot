@@ -58,7 +58,7 @@ const steps = [
         items: [
             {
                 step: "Sign up",
-                detail: <>Visit <Link href="https://monkbot.app/sign-up" className="text-blue-600 hover:underline font-medium">monkbot.app/sign-up</Link> and create a free account. Verify your email address when prompted.</>
+                detail: <>Visit <Link href="https://monkbot.app/sign-in" className="text-blue-600 hover:underline font-medium">monkbot.app/sign-in</Link> and create a free account. Verify your email address when prompted.</>
             },
             {
                 step: "Generate an API Key",
