@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const LAST_UPDATED = "March 7, 2025";
-const CONTACT_EMAIL = "legal@monkbot.app";
+const CONTACT_URL = "/contact";
 
 export default function TermsPage() {
   return (
@@ -64,8 +64,8 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Accounts</h2>
             <p>
-              You must register for an account to use the Service. You agree to provide accurate information and keep it updated. You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. Notify us immediately of any unauthorized access at{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>.
+              You must register for an account to use the Service. You agree to provide accurate information and keep it updated. You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. Notify us immediately of any unauthorized access via our{" "}
+              <Link href={CONTACT_URL} className="text-blue-600 hover:underline">contact page</Link>.
             </p>
             <p className="mt-3">
               We may suspend or terminate your account at any time, at our sole discretion, without notice or liability, including if we believe you have violated these Terms.
@@ -220,8 +220,7 @@ export default function TermsPage() {
             <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm">
               <p className="font-semibold text-gray-900">MonkBot Inc.</p>
               <p className="mt-1">
-                Email:{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-blue-600 hover:underline">{CONTACT_EMAIL}</a>
+                <Link href={CONTACT_URL} className="text-blue-600 hover:underline">Contact us via our contact page</Link>
               </p>
             </div>
           </section>
