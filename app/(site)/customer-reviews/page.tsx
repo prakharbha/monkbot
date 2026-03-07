@@ -159,8 +159,8 @@ export default function CustomerReviewsPage() {
                                     {t.author.charAt(0)}
                                 </div>
                                 <div>
-                                    <h4 className="font-semibold">{t.author}</h4>
-                                    <p className={`text-sm ${t.textColor === 'text-white' ? 'text-gray-400' : 'text-gray-500'}`}>{t.title}</p>
+                                    <p className="font-semibold">{t.author}</p>
+                                    <p className={`text-sm ${t.textColor === 'text-white' ? 'text-gray-400' : 'text-gray-600'}`}>{t.title}</p>
                                 </div>
                             </div>
                         </div>
